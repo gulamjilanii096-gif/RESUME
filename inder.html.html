@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARMANI X - Premium Fashion</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline'; 
+                   style-src 'self' 'unsafe-inline'; 
+                   img-src 'self' data: https:;
+                   font-src 'self';
+                   connect-src 'self';">
+    
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        :root {
+            --primary: #111827;
+            --secondary: #6b7280;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --accent: #2563eb;
+            --success: #059669;
+            --error: #dc2626;
+            --warning: #d97706;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: linear-gradient(135deg, #f3f4f6 0%, #f9fafb 100%);
+            min-height: 100vh;
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        :focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand::before {
+            content: "👔";
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+            background: #f3f4f6;
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+            border-radius: var(--radius);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .hero-image::before {
+            content: "👔 👗 👖 👟";
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: #1f2937;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== PAGES CONTAINER ===== */
+        .pages {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .pages.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .page-subtitle {
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* ===== PRODUCTS GRID ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .product-desc {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ===== CART ===== */
+        .cart-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .cart-items {
+            margin: 1.5rem 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-summary {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 2rem;
+        }
+
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== FORMS ===== */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        .security-tips {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .security-tips h3 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+
+        .security-tips ul {
+            padding-left: 1.5rem;
+        }
+
+        .security-tips li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #d1d5db;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* ===== LOADING STATES ===== */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #e5e7eb;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .flex { display: flex; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .gap-1 { gap: 1rem; }
+        .gap-2 { gap: 2rem; }
+        .w-full { width: 100%; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-content">
+            <a href="#home" class="brand" data-page="home">ARMANI X</a>
+            
+            <button class="mobile-toggle" aria-label="Toggle navigation menu">
+                ☰
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#shop" class="nav-link" data-page="shop">Shop</a></li>
+                <li><a href="#about" class="nav-link" data-page="about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-page="contact">Contact</a></li>
+                <li>
+                    <div class="cart-icon" data-page="cart">
+                        🛒 <span class="cart-count">0</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <section id="home" class="pages active">
+            <div class="hero">
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <h1>ARMANI X — Elegance Redefined</h1>
+                        <p>Premium clothing, modern fit, sustainable choices. Stylish collection — shop now.</p>
+                        <div class="flex gap-1">
+                            <a href="#shop" class="btn" data-page="shop">Shop Now</a>
+                            <a href="#about" class="btn btn-secondary" data-page="about">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <h3>Premium Collection</h3>
+                        <p>Luxury fashion at its finest</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <h2 class="page-title text-center">Featured Collection</h2>
+                <p class="page-subtitle text-center">Discover our most popular items</p>
+                
+                <div class="products-grid" id="featured-products">
+                    <!-- Featured products loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Page -->
+        <section id="shop" class="pages">
+            <div class="container mt-3">
+                <h1 class="page-title">Shop Collection</h1>
+                <p class="page-subtitle">Browse our curated premium collection</p>
+                
+                <div class="products-grid" id="all-products">
+                    <!-- All products loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart" class="pages">
+            <div class="container mt-3">
+                <h1 class="page-title">Your Shopping Cart</h1>
+                
+                <div class="cart-container">
+                    <div id="cart-items">
+                        <p class="text-center">Your cart is empty</p>
+                    </div>
+                    
+                    <div class="cart-summary hidden" id="cart-summary">
+                        <div class="flex" style="justify-content: space-between;">
+                            <div>
+                                <h3>Order Summary</h3>
+                                <p id="cart-total-items">Items: 0</p>
+                            </div>
+                            <div class="cart-total" id="cart-total-price">₹0</div>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <button class="btn w-full" id="checkout-btn">
+                                Proceed to Checkout
+                            </button>
+                            <p class="text-center mt-1" style="font-size: 0.9rem; color: var(--secondary);">
+                                Demo Mode - In production, this would connect to secure payment gateway
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="pages">
+            <div class="container mt-3">
+                <h1 class="page-title">About ARMANI X</h1>
+                
+                <div class="about-content">
+                    <div>
+                        <h2>Our Story</h2>
+                        <p class="about-text">
+                            ARMANI X represents contemporary clothing where quality, fit & responsible sourcing are our pillars. 
+                            We believe in creating fashion that lasts, both in style and sustainability.
+                        </p>
+                        
+                        <div class="security-tips mt-2">
+                            <h3>🏆 Our Commitment to Quality</h3>
+                            <ul>
+                                <li>Premium materials sourced responsibly</li>
+                                <li>Ethical manufacturing practices</li>
+                                <li>Sustainable packaging solutions</li>
+                                <li>Lifetime quality guarantee</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>Safety & Privacy First</h3>
+                        <ul class="security-tips">
+                            <li>हम client पर किसी भी तरह के payment credentials नहीं रखते।</li>
+                            <li>सभी डेटा-transfer के लिए <strong>HTTPS</strong> जरूरी है।</li>
+                            <li>Forms के लिए server-side validation अनिवार्य।</li>
+                            <li>Rate-limiting और CAPTCHA जोड़ें।</li>
+                            <li>Regular security audits and updates.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="pages">
+            <div class="container mt-3">
+                <h1 class="page-title">Contact Us</h1>
+                <p class="page-subtitle">Queries about orders, sizes, or returns? हमें message करें।</p>
+                
+                <div class="form-container">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" id="name" class="form-input" required minlength="2">
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" required>
+                            <div class="error-message" id="email-error"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Your Message</label>
+                            <textarea id="message" class="form-textarea" required minlength="10"></textarea>
+                            <div class="error-message" id="message-error"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn w-full">
+                            Send Message
+                        </button>
+                        
+                        <div class="success-message" id="success-message">
+                            ✅ Thank you! Your message has been sent successfully.
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="security-tips mt-3">
+                    <h4>Security Tips for Safe Shopping</h4>
+                    <ul>
+                        <li>Only submit personal data over HTTPS endpoints.</li>
+                        <li>We recommend server-side validation & rate-limiting.</li>
+                        <li>For payments: use Stripe / Razorpay / PayPal — never store card data on your server.</li>
+                        <li>Always verify website security certificate (🔒 in address bar).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ARMANI X</h3>
+                    <p>Premium fashion, sustainable choices, modern elegance.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-page="home">Home</a></li>
+                        <li><a href="#shop" data-page="shop">Shop</a></li>
+                        <li><a href="#about" data-page="about">About</a></li>
+                        <li><a href="#contact" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <span id="current-year"></span> ARMANI X. All rights reserved.</p>
+                <p class="mt-1">Designed with ❤️ for security & accessibility</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== APP INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Initialize app
+            initApp();
+        });
+
+        // ===== PRODUCT DATA =====
+        const PRODUCTS = [
+            {
+                id: 'p1',
+                name: 'Signature Leather Jacket',
+                price: 20700,
+                desc: 'Premium genuine leather with modern fit.',
+                category: 'jackets',
+                featured: true,
+                emoji: '🧥'
+            },
+            {
+                id: 'p2',
+                name: 'Silk Blend Shirt',
+                price: 6600,
+                desc: 'Smooth, breathable fabric for all occasions.',
+                category: 'shirts',
+                featured: true,
+                emoji: '👕'
+            },
+            {
+                id: 'p3',
+                name: 'Tailored Chinos',
+                price: 4900,
+                desc: 'Slim fit chinos with premium cotton.',
+                category: 'pants',
+                featured: true,
+                emoji: '👖'
+            },
+            {
+                id: 'p4',
+                name: 'Classic Sneakers',
+                price: 9900,
+                desc: 'Comfortable sneakers with durable sole.',
+                category: 'shoes',
+                featured: true,
+                emoji: '👟'
+            },
+            {
+                id: 'p5',
+                name: 'Wool Blazer',
+                price: 12500,
+                desc: 'Formal blazer for business occasions.',
+                category: 'jackets',
+                featured: false,
+                emoji: '🥼'
+            },
+            {
+                id: 'p6',
+                name: 'Cashmere Sweater',
+                price: 8500,
+                desc: 'Warm and soft cashmere winter wear.',
+                category: 'sweaters',
+                featured: false,
+                emoji: '🧶'
+            },
+            {
+                id: 'p7',
+                name: 'Designer Watch',
+                price: 18900,
+                desc: 'Elegant timepiece with leather strap.',
+                category: 'accessories',
+                featured: false,
+                emoji: '⌚'
+            },
+            {
+                id: 'p8',
+                name: 'Linen Trousers',
+                price: 5400,
+                desc: 'Lightweight linen for summer comfort.',
+                category: 'pants',
+                featured: false,
+                emoji: '🩳'
+            }
+        ];
+
+        // ===== CART MANAGEMENT =====
+        let cart = JSON.parse(localStorage.getItem('armani_cart')) || [];
+
+        function saveCart() {
+            localStorage.setItem('armani_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+        }
+
+        function updateCartUI() {
+            // Update cart count in nav
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+            
+            // Update cart page if visible
+            if (document.getElementById('cart').classList.contains('active')) {
+                renderCartPage();
+            }
+        }
+
+        function renderCartPage() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartSummaryEl = document.getElementById('cart-summary');
+            
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="text-center">Your cart is empty</p>';
+                cartSummaryEl.classList.add('hidden');
+                return;
+            }
+            
+            let total = 0;
+            let html = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price.toLocaleString()} × ${item.quantity}</p>
+                            <p class="cart-item-price">₹${itemTotal.toLocaleString()}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-small" onclick="removeFromCart('${item.id}')">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartItemsEl.innerHTML = html;
+            cartSummaryEl.classList.remove('hidden');
+            
+            document.getElementById('cart-total-items').textContent = `Items: ${cart.length}`;
+            document.getElementById('cart-total-price').textContent = `₹${total.toLocaleString()}`;
+        }
+
+        // ===== PAGE ROUTING =====
+        function initApp() {
+            // Handle navigation clicks
+            document.querySelectorAll('[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    navigateTo(pageId);
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('show');
+                });
+            });
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-toggle').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('show');
+            });
+            
+            // Initialize all pages
+            renderProducts();
+            setupContactForm();
+            setupCheckout();
+            
+            // Load initial page from URL hash
+            const initialPage = window.location.hash.substring(1) || 'home';
+            navigateTo(initialPage);
+        }
+
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.pages').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Update URL hash
+            window.location.hash = pageId;
+            
+            // Special page actions
+            if (pageId === 'cart') {
+                renderCartPage();
+            }
+        }
+
+        // ===== PRODUCT RENDERING =====
+        function renderProducts() {
+            // Featured products on home page
+            const featuredContainer = document.getElementById('featured-products');
+            const allContainer = document.getElementById('all-products');
+            
+            if (featuredContainer) {
+                const featuredProducts = PRODUCTS.filter(p => p.featured);
+                featuredContainer.innerHTML = featuredProducts.map(createProductCard).join('');
+            }
+            
+            if (allContainer) {
+                allContainer.innerHTML = PRODUCTS.map(createProductCard).join('');
+            }
+            
+            // Add event listeners to all Add to Cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const product = PRODUCTS.find(p => p.id === productId);
+                    if (product) {
+                        addToCart(product);
+                    }
+                });
+            });
+        }
+
+        function createProductCard(product) {
+            return `
+                <div class="product-card">
+                    <div class="product-image">
+                        <div style="font-size: 3rem;">${product.emoji}</div>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">${escapeHtml(product.name)}</h3>
+                        <p class="product-desc">${escapeHtml(product.desc)}</p>
+                        <div class="product-price">₹${product.price.toLocaleString()}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-small add-to-cart-btn" data-id="${product.id}">
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-small" style="background: transparent; color: var(--primary); border: 1px solid var(--primary);">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== CONTACT FORM =====
+        function setupContactForm() {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                // Clear previous errors
+                clearErrors();
+                
+                // Validate
+                let isValid = true;
+                
+                if (name.length < 2) {
+                    showError('name-error', 'Name must be at least 2 characters');
+                    isValid = false;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showError('email-error', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                if (message.length < 10) {
+                    showError('message-error', 'Message must be at least 10 characters');
+                    isValid = false;
+                }
+                
+                if (!isValid) return;
+                
+                // Sanitize input
+                const sanitizedName = escapeHtml(name);
+                const sanitizedMessage = escapeHtml(message.substring(0, 500));
+                
+                // Show success message
+                const successEl = document.getElementById('success-message');
+                successEl.classList.add('show');
+                successEl.innerHTML = `
+                    ✅ Thank you, <strong>${sanitizedName}</strong>! Your message has been sent successfully.<br>
+                    <small>We'll respond to you at ${escapeHtml(email)} within 24 hours.</small>
+                `;
+                
+                // Reset form
+                form.reset();
+                
+                // Scroll to success message
+                successEl.scrollIntoView({ behavior: 'smooth' });
+                
+                // In production: Send to server
+                // fetch('/api/contact', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ name, email, message })
+                // });
+            });
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+                el.textContent = '';
+            });
+        }
+
+        function showError(elementId, message) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.style.display = 'block';
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // ===== CHECKOUT FUNCTIONALITY =====
+        function setupCheckout() {
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (!checkoutBtn) return;
+            
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    showNotification('Your cart is empty!', 'error');
+                    return;
+                }
+                
+                // Simulate payment processing
+                this.innerHTML = '<span class="loading-spinner"></span> Processing...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    showNotification('✅ Order placed successfully! (Demo Mode)', 'success');
+                    
+                    // Clear cart
+                    cart = [];
+                    saveCart();
+                    
+                    // Reset button
+                    this.innerHTML = 'Proceed to Checkout';
+                    this.disabled = false;
+                    
+                    // Navigate to home
+                    navigateTo('home');
+                    
+                    // Show demo payment info
+                    alert('DEMO MODE:\n\nIn production, this would:\n1. Redirect to secure payment gateway (Stripe/Razorpay)\n2. Process payment securely\n3. Never store card details on server\n4. Send order confirmation via email\n\nTotal: ₹' + 
+                        cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString());
+                    
+                }, 2000);
+            });
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#059669' : '#dc2626'};
+                    color: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 9999;
+                    animation: slideInRight 0.3s ease;
+                ">
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // ===== KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', function(e) {
+            // Close mobile menu on Escape
+            if (e.key === 'Escape') {
+                document.querySelector('.nav-links').classList.remove('show');
+            }
+            
+            // Focus trap for accessibility
+            if (e.key === 'Tab') {
+                const activePage = document.querySelector('.pages.active');
+                const focusable = activePage.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                
+                if (focusable.length === 0) return;
+                
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                
+                if (e.shiftKey && document.activeElement === first) {
+                    last.focus();
+                    e.preventDefault();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    first.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // ===== WINDOW EVENTS =====
+        window.addEventListener('hashchange', function() {
+            const pageId = window.location.hash.substring(1) || 'home';
+            navigateTo(pageId);
+        });
+
+        // Prevent form submission on Enter in search
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'submit') {
+                e.preventDefault();
+            }
+        });
+
+        // CSS Animation for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
